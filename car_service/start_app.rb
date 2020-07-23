@@ -1,6 +1,11 @@
 require 'Date'
-datee = Date.today
-datee += 11
-puts datee
+require 'Time'
+require '../car_service/request_service'
+
+
+serivce = RequestService.new
+
+
+
 
 
