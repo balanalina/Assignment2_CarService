@@ -1,9 +1,10 @@
 require '../car_service/request_repo'
 require 'Date'
 
-module DateCalcInSec
+module TimeUtils
   HOUR = 3600
   DAY = 24 * 3600
+  MINUTE = 60
 end
 
 module Schedule
@@ -17,32 +18,64 @@ end
 
 class RequestService
   include Schedule
-  include DateCalcInSec
+  include TimeUtils
 
   def initialize
     @schedule1 = Repo.new
     @schedule2 = Repo.new
   end
 
+  # @param [Time] time
   def add_request(time  = Time.now)
     newRequest = Request.new time
-    return_pickup_date newRequest
+    set_pickup_date newRequest
+    pickup_date_print newRequest
+  end
+
+  def pickup_date_print(request)
+    request.pickupTime.strftime("%A %d-%m-%Y %H:%M")
   end
 
   private
-  def return_pickup_date(request)
+  # @param [Request] request
+  def set_pickup_date(request)
     if @schedule1.is_empty?
-      request.pickupTime = request.arriveTime
+      request.washTime = request.arriveTime
       compute_pickup_date request
       @schedule1.add_request request
+      return
+    elsif @schedule2.is_empty?
+      request.washTime = request.arriveTime
+      compute_pickup_date request
+      @schedule2.add_request request
+      return
+    end
+    if @schedule1.get_last.pickupTime < request.arriveTime
+      request.washTime = request.arriveTime
+      compute_pickup_date request
+      @schedule1.add_request request
+      return
+    end
+    if @schedule2.get_last.pickupTime < request.arriveTime
+      request.washTime = request.arriveTime
+      compute_pickup_date request
+      @schedule2.add_request request
+      return
+    end
+    if @schedule1.get_last.pickupTime < @schedule2.get_last.pickupTime
+      request.washTime = @schedule1.get_last.pickupTime + MINUTE
+      compute_pickup_date request
+      @schedule1.add_request request
+      return
+    else
+      request.washTime = @schedule2.get_last.pickupTime + MINUTE
+      compute_pickup_date request
+      @schedule2.add_request request
     end
   end
 
   def compute_pickup_date(request)
-    include Schedule
-    include DateCalcInSec
-
-    pickup = request.arriveTime
+    pickup = request.washTime
     pickup += (2 * HOUR)
 
     if pickup.saturday?

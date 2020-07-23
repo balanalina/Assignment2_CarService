@@ -3,9 +3,26 @@ require 'Time'
 require '../car_service/request_service'
 
 
-serivce = RequestService.new
-
-puts 20 - Time.now.hour
-
-
-
+puts serivce = RequestService.new
+puts serivce.add_request(Time.now)
+puts serivce.add_request(Time.now)
+puts serivce.add_request(Time.now)
+puts serivce.add_request(Time.now)
+puts serivce.add_request(Time.now)
+puts serivce.add_request(Time.now)
+puts serivce.add_request(Time.now)
+puts serivce.add_request(Time.now)
+puts serivce.add_request(Time.now)
+puts serivce.add_request(Time.now)
+puts serivce.add_request(Time.now)
+puts serivce.add_request(Time.now)
+puts serivce.add_request(Time.now)
+puts serivce.add_request(Time.now)
+puts serivce.add_request(Time.now)
+puts serivce.add_request(Time.now)
+puts serivce.add_request(Time.now)
+puts serivce.add_request(Time.now)
+puts serivce.add_request(Time.now)
+puts serivce.add_request(Time.now)
+puts serivce.add_request(Time.now)
+puts serivce.add_request(Time.now)
