@@ -18,4 +18,20 @@ class Repo
     @requests
   end
 
+  def get_first
+    @requests.first
+  end
+
+  def get_last
+    @requests.last
+  end
+
+  def get_size
+    @requests.size
+  end
+
+  def is_empty?
+    @requests.empty?
+  end
+
 end

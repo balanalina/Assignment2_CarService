@@ -1,16 +1,16 @@
+require 'Date'
+
 class Request
   @@carCount = 0
 
-  attr_reader :arriveTime, :arriveDate, :carNr
-  attr_accessor :pickDate, :pickTime
+  attr_reader :arriveTime, :carNr
+  attr_accessor :pickupTime
 
-  def initialize(arriveTime,arriveDate)
+  def initialize(arriveTime)
     @arriveTime = arriveTime
-    @arriveDate = arriveDate
     @@carCount += 1
     @carNr = @@carCount
-    @pickDate = nil
-    @pickTime = nil
+    @pickupTime = nil
   end
 
   def get_total_number
