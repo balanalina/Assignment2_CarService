@@ -1,21 +1,23 @@
-require 'Date'
-
 class Request
-  @@carCount = 0
+  @@car_count = 0
 
-  attr_reader :arriveTime, :carNr
-  attr_accessor :pickupTime, :washTime
+  attr_reader :arrive_time, :car_nr
+  attr_accessor :pickup_time, :wash_time
 
-  def initialize(arriveTime)
-    @arriveTime = arriveTime
-    @washTime = nil
-    @@carCount += 1
-    @carNr = @@carCount
-    @pickupTime = nil
+  def initialize(arrive_time)
+    #time when the request was made
+    @arrive_time = arrive_time
+    #time when the car begin to be washed
+    @wash_time = nil
+    @@car_count += 1
+    @car_nr = @@car_count
+    #time when the car is washed
+    @pickup_time = nil
   end
-
+  
+  #total number of requests
   def get_total_number
-    @@carCount
+    @@car_count
   end
 
 end

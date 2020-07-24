@@ -1,6 +1,4 @@
 require_relative "../car_service/request_service"
-# require_relative "../car_service/request_repo"
-# require_relative "../car_service/request"
 
 describe 'test for one car, no waiting/scheduling' do
   context 'leave it today, take it today' do
