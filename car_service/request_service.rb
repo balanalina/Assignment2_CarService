@@ -1,5 +1,4 @@
-require '../car_service/request_repo'
-require 'Date'
+require_relative 'request_repo'
 
 module TimeUtils
   HOUR = 3600
@@ -26,8 +25,8 @@ class RequestService
   end
 
   # @param [Time] time
-  def add_request(time  = Time.now)
-    newRequest = Request.new time
+  def add_request
+    newRequest = Request.new Time.now
     set_pickup_date newRequest
     pickup_date_print newRequest
   end

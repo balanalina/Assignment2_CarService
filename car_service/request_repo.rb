@@ -1,4 +1,4 @@
-require '../car_service/request'
+require_relative 'request'
 
 class Repo
 

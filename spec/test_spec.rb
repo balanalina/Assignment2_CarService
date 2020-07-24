@@ -1,16 +1,14 @@
-require './car_service/request'
-require 'Date'
+require_relative "../car_service/request_service"
+# require_relative "../car_service/request_repo"
+# require_relative "../car_service/request"
 
-describe "model tests" do
-  context "check car numbers" do
-    req1 = Request.new(Time.now,Date.today)
-    req2 = Request.new(Time.now,Date.today)
-    it 'should be 2' do
-      expect(req2.get_total_number).to eq 2
-    end
-    it 'should be 1' do
-      expect(req1.carNr).to eq 1
+describe 'test for one car, no waiting/scheduling' do
+  context 'leave it today, take it today' do
+    it 'should print Thursday 23-07-2020 17:30' do
+      service = RequestService.new
+      allow(Time).to receive(:now).and_return(Time.new(2020,07,23,15,30))
+      expect(1+1).to eq 2
+      expect(service.add_request).to eq 'Thursday 23-07-2020 17:30'
     end
   end
-
 end
