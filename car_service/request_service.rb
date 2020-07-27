@@ -79,9 +79,7 @@ class RequestService
   def compute_pickup_date(request)
     pickup = request.wash_time
     pickup += (2 * HOUR)
-    #check to see if it is a weekday or a saturday to know which schedule to use
     if pickup.saturday?
-      #finish in the same day
       compute_pickup_date_saturday(request, pickup)
     else
       compute_pickup_date_weekday(request, pickup)
@@ -89,6 +87,7 @@ class RequestService
   end
 
   def compute_pickup_date_saturday(request, pickup)
+    #finish the same day
     if pickup.hour < CLOSING_TIME_SATURDAY || pickup.hour == CLOSING_TIME_SATURDAY && pickup.min == 0
       request.pickup_time = pickup
     else
