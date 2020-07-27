@@ -4,9 +4,9 @@ class Request
   attr_reader :arrive_time, :car_nr
   attr_accessor :pickup_time, :wash_time
 
-  def initialize(arrive_time)
+  def initialize
     #time when the request was made
-    @arrive_time = arrive_time
+    @arrive_time = Time.now
     #time when the car begin to be washed
     @wash_time = nil
     @@car_count += 1
@@ -19,5 +19,4 @@ class Request
   def get_total_number
     @@car_count
   end
-
 end
